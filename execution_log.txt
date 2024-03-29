@@ -1,0 +1,8 @@
+name: ASH, email: minnucb79@gmail.com
+Image loaded
+Font color and size set
+Text defined: ASH
+Text position calculated
+Text added to image
+Image saved
+Email sent successfully.

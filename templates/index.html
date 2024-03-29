@@ -4,66 +4,98 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Image Form</title>
-</head>
 <style>
-  .main_container{
-    display: flex; 
-  }
-  body{
-    display: grid;
-    place-content: center;
-
-  }
-  .form-content{
+  body {
+    background: #200e3aa2;
     display: flex;
-    margin-top: 150px ;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
   }
-  .submitBtn{
-    justify-content: center;
-    border-radius: 10px;
+
+  .main-container {
     display: flex;
-    width: 100px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  input {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border: 1px solid #200E3A;
+    border-radius: 5px;
+    font-size: large;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .submitBtn {
+    width: 100%;
+    max-width: 400px;
     height: 50px;
+    border: none;
+    border-radius: 10px;
     font-size: large;
     font-weight: bold;
+    background-color: #200E3A;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .submitBtn:hover {
+    background-color: #200E3A; /* Darken the color on hover */
   }
 </style>
-<body background="backdrop.jpg">
+</head>
+<body>
+  
+
+  <h1 style="color: white; font-family: 'Poppins', sans-serif;">VongDrop</h1>
+
   <div class="main-container">
-  <form class="form-content" action="/process_form" method="post" enctype="multipart/form-data">
-    <input style="width: 400px; height: 30px; border-radius: 5px; font-size: large;" type="text" id="name" name="name" placeholder="Name" required><br>
-    <input style="width: 400px; height: 30px; border-radius: 5px; font-size: large;" type="email" id="email" name="email" placeholder="Email" required><br><br>
-    <input class="submitBtn" type="submit" id="submitBtn" value="Submit">
-  </form>
+    <form class="form-content" action="/process_form" method="post" enctype="multipart/form-data">
+      <input type="text" id="name" name="name" placeholder="Name" required>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+      <input class="submitBtn" type="submit" id="submitBtn" value="Submit">
+    </form>
   </div>
 
   <script>
-    // Function to validate email using regular expression
     function validateEmail(email) {
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return regex.test(email);
     }
 
-    // Function to check form validity and enable/disable submit button
     function checkFormValidity() {
       const nameField = document.getElementById('name');
       const emailField = document.getElementById('email');
       const submitBtn = document.getElementById('submitBtn');
 
-      const isNameValid = nameField.value.trim() !== ''; // Check if name field is not empty
-      const isEmailValid = validateEmail(emailField.value.trim()); // Check if email is valid
+      const isNameValid = nameField.value.trim() !== '';
+      const isEmailValid = validateEmail(emailField.value.trim());
 
-      submitBtn.disabled = !(isNameValid && isEmailValid); // Disable submit button if name or email is invalid
+      submitBtn.disabled = !(isNameValid && isEmailValid);
     }
 
-    // Add event listeners to name and email fields to check validity on input change
     document.getElementById('name').addEventListener('input', checkFormValidity);
     document.getElementById('email').addEventListener('input', checkFormValidity);
 
-    // Check form validity initially
     checkFormValidity();
   </script>
 </body>
